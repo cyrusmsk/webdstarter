@@ -1,4 +1,5 @@
 import std.experimental.logger;
+import std.algorithm;
 import std.datetime: seconds;
 
 import diet.html;
@@ -41,5 +42,13 @@ void hello(Request req, Output output) {
 
 @endpoint
 void other(Request req, Output output) {
-    output.serveFile("public");
+    // Set the status code to 404
+	output.status = 404;
+	output.addHeader("Content-Type", "text/plain");
+
+	// Write a simple message
+	output.write("Page not found!");
 }
+
+@endpoint @route!(r => r.path.endsWith(".css"))
+void css(Request r, Output o) { o.serveFile("public/styles/app.css"); }

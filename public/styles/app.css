@@ -1,17 +1,5 @@
 /*! tailwindcss v4.1.14 | MIT License | https://tailwindcss.com */
 @layer properties;
-.absolute {
-  position: absolute;
-}
-.static {
-  position: static;
-}
-.container {
-  width: 100%;
-}
-.block {
-  display: block;
-}
 .border-b {
   border-bottom-style: var(--tw-border-style);
   border-bottom-width: 1px;
