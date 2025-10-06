@@ -3,6 +3,10 @@
 		"Sergei Giniatulin"
 	],
 	"copyright": "Copyright © 2025, Sergei Giniatulin",
+	"dependencies": {
+		"tailwind-d": "~>1.0.2",
+		"vibe-d": "~>0.10.2"
+	},
 	"description": "Starter pack with D, Diet, Tailwind",
 	"license": "MIT",
 	"name": "webdstarter"
