@@ -1,10 +1,15 @@
-import vibe.vibe;
+import std.experimental.logger;
+import std.datetime: seconds;
 
+import diet.html;
+import serverino;
 import tailwind;
 
-void main()
+mixin ServerinoMain;
+
+@onServerInit ServerinoConfig configure()
 {
-	Tailwind tailwind = new Tailwind;
+    Tailwind tailwind = new Tailwind;
 
 	tailwind.input = "assets/app.css";
 	tailwind.output = "public/styles/app.css";
@@ -12,29 +17,29 @@ void main()
 	try {
 		tailwind.run();
 	} catch (TailwindException e) {
-		logWarn("Tailwind watch can't be started. %s", e.message);
+		info("Tailwind watch can't be started. %s", e.message);
 	}
 
-	auto settings = new HTTPServerSettings;
-	settings.port = 8080;
-	settings.bindAddresses = ["::1", "127.0.0.1"];
-
-	auto router = new URLRouter;
-	router.get("/", &hello);
-	router.get("*", serveStaticFiles("public"));
-
-	auto listener = listenHTTP(settings, router);
-
-	scope (exit)
-	{
-		listener.stopListening();
-	}
-
-	logInfo("Please open http://127.0.0.1:8080/ in your browser.");
-	runApplication();
+    return ServerinoConfig
+    .create()
+    .setHttpTimeout(15.seconds)
+    .enableKeepAlive(180.seconds)
+    .addListener("0.0.0.0", 8080);
 }
 
-void hello(HTTPServerRequest req, HTTPServerResponse res)
-{
-	res.render!("index.dt");
+@endpoint @route!"/"
+void hello(Request req, Output output) {
+    import std.array : appender;
+	auto page = appender!string;	// Page will be written to this
+
+	// Compile the page
+	page.compileHTMLDietFile!("index.dt");
+
+	// Write the page to the output
+	output ~= page.data;
+}
+
+@endpoint
+void other(Request req, Output output) {
+    output.serveFile("public");
 }
