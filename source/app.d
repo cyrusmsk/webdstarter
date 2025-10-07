@@ -7,7 +7,7 @@ void main()
 	Tailwind tailwind = new Tailwind;
 
 	tailwind.input = "assets/app.css";
-	tailwind.output = "public/styles/app.css";
+	tailwind.output = "public/styles.css";
 
 	try {
 		tailwind.run();
@@ -20,7 +20,9 @@ void main()
 	settings.bindAddresses = ["::1", "127.0.0.1"];
 
 	auto router = new URLRouter;
-	router.get("/", &hello);
+	router.get("/", &index);
+	router.get("/login-form", &loginForm);
+	router.get("/show-form", &showForm);
 	router.get("*", serveStaticFiles("public"));
 
 	auto listener = listenHTTP(settings, router);
@@ -34,7 +36,17 @@ void main()
 	runApplication();
 }
 
-void hello(HTTPServerRequest req, HTTPServerResponse res)
+void index(HTTPServerRequest req, HTTPServerResponse res)
 {
 	res.render!("index.dt");
+}
+
+void loginForm(HTTPServerRequest req, HTTPServerResponse res)
+{
+	res.render!("login.dt");
+}
+
+void showForm(HTTPServerRequest req, HTTPServerResponse res)
+{
+	res.render!("form.dt");
 }
