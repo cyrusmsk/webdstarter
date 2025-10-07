@@ -1,6 +1,4 @@
-import std.experimental.logger;
-import std.algorithm;
-import std.datetime: seconds;
+import std;
 
 import diet.html;
 import serverino;
@@ -40,7 +38,7 @@ void hello(Request req, Output output) {
 	output ~= page.data;
 }
 
-@endpoint
+@endpoint @priority(-1)
 void other(Request req, Output output) {
     // Set the status code to 404
 	output.status = 404;
@@ -50,5 +48,19 @@ void other(Request req, Output output) {
 	output.write("Page not found!");
 }
 
-@endpoint @route!(r => r.path.endsWith(".css"))
-void css(Request r, Output o) { o.serveFile("public/styles/app.css"); }
+@endpoint @route!(r => r.path.startsWith("/styles"))
+void css(Request r, Output o) {
+	auto pathOnDisk = "./public" ~ r.path;
+	if (!r.path.endsWith(".css"))
+	{
+		warning("Ignored, not a CSS file: ", r.path);
+		return;
+	}
+	if (exists(pathOnDisk)) {
+	    o.serveFile(pathOnDisk);
+	}
+	else {
+	    warning("Non existing path to serve", r.path);
+	    return;
+	}
+}
