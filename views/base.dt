@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+  head
+    title GOTHSTARTER
+    link(rel="icon", type="image/x-icon", href="/public/favicon.ico")
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/public/styles.css")
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js", integrity="/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=", crossorigin="anonymous")
+    script(src="https://unpkg.com/alpinejs", defer)
+    script(src="https://unpkg.com/htmx.org@1.9.9", defer)
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js")
+  body(class="antialiased flex h-screen bg-gray-100")
+    // Sidebar always visible on left
+    div(id="sidebar")
+      include sidebar.dt
+
+    // Main content container
+    div(id="main-content", class="flex-1 overflow-auto p-6")
+      block content

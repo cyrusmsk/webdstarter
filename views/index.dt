@@ -1,10 +1,16 @@
-- void css(string file)
-	link(rel= 'stylesheet', type='text/css', href='styles/#{file}.css')
+extends base.dt
 
-doctype html
-html
-	head
-		title tailwind.d example
-		- css("app");
-	body
-		div(class="bg-green-300 border-green-600 border-b p-4 m-4 rounded") Hello world
+block content
+  div(class="max-w-2xl mx-auto")
+    h1(class="text-3xl font-bold mb-4")
+      | Welcome to GOTHSTARTER
+    p(class="text-gray-700 mb-6")
+      | This is the homepage content loaded via HTMX.
+    // You can put more elements here
+    button(
+      hx-get="/show-form",
+      hx-target="#main-content",
+      hx-swap="outerHTML",
+      class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+    )
+      | Show the Form
