@@ -1,0 +1,78 @@
+extends base.dt
+
+block content
+  div(class="max-w-lg mx-auto bg-white shadow-md rounded px-6 py-8")
+    h2(class="text-2xl font-semibold mb-6")
+      | Propose a Talk
+
+    form(action="/submit-talk", method="post", class="space-y-6")
+      // Name
+      div
+        label(for="name", class="block text-gray-700")
+          | Name
+        input#name(
+          name="name",
+          type="text",
+          required,
+          class="mt-1 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        )
+
+      // Theme of the talk
+      div
+        label(for="theme", class="block text-gray-700")
+          | Theme of the Talk
+        input#theme(
+          name="theme",
+          type="text",
+          required,
+          class="mt-1 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        )
+
+      // Experience of the audience
+      div
+        label(for="experience", class="block text-gray-700")
+          | Experience Level of the Audience
+        select#experience(
+          name="experience",
+          required,
+          class="mt-1 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        )
+          option(value="", disabled, selected)
+            | -- Select Experience Level --
+          option(value="beginner")
+            | Beginner
+          option(value="intermediate")
+            | Intermediate
+          option(value="advanced")
+            | Advanced
+
+      // Duration of the talk
+      div
+        label(for="duration", class="block text-gray-700")
+          | Duration of the Talk (minutes)
+        input#duration(
+          name="duration",
+          type="number",
+          min="1",
+          required,
+          class="mt-1 block w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        )
+
+      // Submit button
+      div
+        button(
+          type="submit",
+          class="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+        )
+          | Submit Proposal
+
+    // Optionally, a back or cancel link
+    div(class="mt-4 text-center")
+      a(
+        href="#",
+        hx-get="/",
+        hx-target="#main-content",
+        hx-swap="outerHTML",
+        class="text-blue-500 hover:underline"
+      )
+        | Back to Home

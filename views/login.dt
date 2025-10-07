@@ -1,0 +1,39 @@
+extends base.dt
+
+block content
+  div(class="max-w-md mx-auto bg-white shadow-md rounded px-6 pt-6 pb-8 mb-4")
+    h2(class="text-2xl font-semibold mb-4")
+      | Log In
+
+    form(action="/login", method="post", class="space-y-4")
+      div
+        label(for="username", class="block text-gray-700")
+          | Username
+        input#username(
+          name="username",
+          type="text",
+          required,
+          class="mt-1 block w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        )
+
+      div
+        label(for="password", class="block text-gray-700")
+          | Password
+        input#password(
+          name="password",
+          type="password",
+          required,
+          class="mt-1 block w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        )
+
+      div
+        button(
+          type="submit",
+          class="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+        )
+          | Log In
+
+    // Optional: link to register or forgot password
+    div(class="mt-4 text-center")
+      a(href="/register", class="text-blue-500 hover:underline")
+        | Register a new account
