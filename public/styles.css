@@ -3,12 +3,6 @@
 .visible {
   visibility: visible;
 }
-.absolute {
-  position: absolute;
-}
-.static {
-  position: static;
-}
 .container {
   width: 100%;
 }
@@ -21,9 +15,6 @@
 .flex {
   display: flex;
 }
-.table {
-  display: table;
-}
 .h-screen {
   height: 100vh;
 }
@@ -32,9 +23,6 @@
 }
 .flex-1 {
   flex: 1;
-}
-.grow {
-  flex-grow: 1;
 }
 .flex-col {
   flex-direction: column;

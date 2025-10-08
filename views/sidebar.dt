@@ -10,7 +10,7 @@ div(class="w-64 bg-gray-800 text-white h-screen flex flex-col p-4")
       href="/",
       hx-get="/",
       hx-target="#main-content",
-      hx-swap="outerHTML",
+      hx-swap="innerHTML",
       class="block py-2 px-4 rounded hover:bg-gray-700 transition-colors"
     )
       | Home
@@ -18,7 +18,7 @@ div(class="w-64 bg-gray-800 text-white h-screen flex flex-col p-4")
       href="/login-form",
       hx-get="/login-form",
       hx-target="#main-content",
-      hx-swap="outerHTML",
+      hx-swap="innerHTML",
       class="block py-2 px-4 rounded hover:bg-gray-700 transition-colors"
     )
       | Login
@@ -26,7 +26,7 @@ div(class="w-64 bg-gray-800 text-white h-screen flex flex-col p-4")
       href="/show-form",
       hx-get="/show-form",
       hx-target="#main-content",
-      hx-swap="outerHTML",
+      hx-swap="innerHTML",
       class="block py-2 px-4 rounded hover:bg-gray-700 transition-colors"
     )
       | Show Form
